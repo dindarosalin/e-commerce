@@ -72,6 +72,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script>
+        Dropzone.autoDiscover = false;
         var myDropzonePhotos = new Dropzone("#photos-dropzone", {
             url: '{{ route('media.store') }}',
             paramName: "file",
@@ -87,7 +88,7 @@
                         name: "{{ $media->file_name }}",
                         size: "{{ $media->size }}",
                         url: "{{ $media->getUrl() }}",
-                        path: "{{ $media->getPath() }}",
+                        path: "{{ addslashes($media->getPath()) }}",
                         type: "{{ $media->mime_type }}"
                     });
                 @endforeach

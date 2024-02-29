@@ -16,7 +16,7 @@
                                             <h5 class="card-title">{{ $product->name }}</h5>
                                             <p class="card-text">{{ $product->description }}</p>
                                             <p class="card-text"><strong>Price: ${{ $product->price }}</strong></p>
-                                            <a href="{{ route('catalog.show', $product->id) }}" class="btn btn-primary">View Details</a>
+                                            <a href="{{ route('add-to-cart', $product->id) }}" class="btn btn-primary">Masukkan keranjang</a>
                                         </div>
                                     </div>
                                 </div>

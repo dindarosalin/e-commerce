@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -27,6 +27,9 @@
                         @else
                             <li class="nav-item list-unstyled">
                                 <a class="nav-link" href="{{ route('catalog.index') }}">Katalog Produk</a>
+                            </li>
+                            <li class="nav-item list-unstyled">
+                                <a class="nav-link" href="{{ route('view-cart') }}">Keranjang</a>
                             </li>
                         @endhasanyrole
                     </div>

@@ -56,11 +56,16 @@ Route::middleware(['auth','role:User'])->group(function(){
 Route::middleware(['auth','role:Seller'])->group(function(){
     Route::resource('roles', SellerController::class);
     Route::resource('products', ProductController::class);
+    // Route::delete('products', ProductController::class);
 });
 
 Route::middleware(['auth','role:Buyer'])->group(function(){
     Route::resource('roles', BuyerController::class);
     Route::resource('catalog', CatalogController::class);
+    Route::get('catalog/cart', [CatalogController::class, 'show'])->name('view-cart');
+    Route::get('addToCart/{id}', [CatalogController::class, 'addToCart'])->name('add-to-cart');
+    Route::patch('update-cart', [CatalogController::class, 'update'])->name('update.cart');
+    Route::delete('remove/{id}', [CatalogController::class, 'remove'])->name('remove-item'); // Perubahan pada definisi rute untuk penghapusan item
 });
 
 Route::post('store-media', [MediaController::class, 'store'])->name('media.store')->middleware('auth');
