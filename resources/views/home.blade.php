@@ -14,16 +14,19 @@
                             </div>
                         @endif
 
-                        @hasanyrole('Super Admin|Admin')
+                        {{-- @hasanyrole('Super Admin|Admin')
                             <li class="nav-item list-unstyled">
-                                <a class="nav-link" href="{{ route('roles.index') }}">roles</a>
+                                <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
+                            </li>
+                        @endhasanyrole --}}
+
+                        @hasanyrole('Seller')
+                            <li class="nav-item list-unstyled">
+                                <a class="nav-link" href="{{ route('products.index') }}">Menu Seller</a>
                             </li>
                         @else
                             <li class="nav-item list-unstyled">
-                                <a class="nav-link" href="">Menu 1</a>
-                            </li>
-                            <li class="nav-item list-unstyled">
-                                <a class="nav-link" href="">Menu 2</a>
+                                <a class="nav-link" href="{{ route('catalog.index') }}">Katalog Produk</a>
                             </li>
                         @endhasanyrole
                     </div>

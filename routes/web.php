@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Buyer\BuyerController;
+use App\Http\Controllers\Product\MediaController;
+use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Catalog\CatalogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +55,12 @@ Route::middleware(['auth','role:User'])->group(function(){
 
 Route::middleware(['auth','role:Seller'])->group(function(){
     Route::resource('roles', SellerController::class);
+    Route::resource('products', ProductController::class);
 });
 
 Route::middleware(['auth','role:Buyer'])->group(function(){
     Route::resource('roles', BuyerController::class);
+    Route::resource('catalog', CatalogController::class);
 });
+
+Route::post('store-media', [MediaController::class, 'store'])->name('media.store')->middleware('auth');

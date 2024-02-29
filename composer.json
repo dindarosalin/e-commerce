@@ -12,7 +12,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.4",
         "rappasoft/laravel-authentication-log": "^3.0",
-        "spatie/laravel-medialibrary": "11.0.0",
+        "spatie/laravel-medialibrary": "^11.4",
         "spatie/laravel-permission": "^6.3",
         "torann/geoip": "^3.0"
     },

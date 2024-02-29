@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('name');
+            $table->text('description');
+            $table->decimal('price', 8, 2);
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }

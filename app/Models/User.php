@@ -9,6 +9,8 @@ use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Product;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -44,4 +46,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 }
