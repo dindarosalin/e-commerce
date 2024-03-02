@@ -68,7 +68,7 @@ Route::middleware(['auth','role:Buyer'])->group(function(){
     Route::get('addToCart/{id}', [CatalogController::class, 'addToCart'])->name('add-to-cart');
     Route::patch('update-cart', [CatalogController::class, 'update'])->name('update.cart');
     Route::delete('remove/{id}', [CatalogController::class, 'remove'])->name('remove-item'); // Perubahan pada definisi rute untuk penghapusan item
-    Route::resource('/checkout', ShippingController::class);
+    Route::resource('checkout', CheckoutController::class);
 });
 
 // Route::resource('/checkout', ShippingController::class);

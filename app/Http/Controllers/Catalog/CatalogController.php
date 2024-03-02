@@ -22,7 +22,9 @@ class CatalogController extends Controller
             })
             ->addColumn('action', function ($item) {
             return '<div class="d-flex justify-content-end">
-                        <a href="' . route('add-to-cart', $item->id) . '" class="btn btn-sm btn-primary me-2">Tambah ke Keranjang</a>
+                        <a href="' . route('add-to-cart', $item->id) . '" class="btn btn-sm btn-warning me-2">🛒</a>
+                        <a href="" class="btn btn-sm btn-success me-2">📤</a>
+                        <a href="" class="btn btn-sm btn-primary me-2">👁‍🗨</a>
                     </div>';
             })
             ->rawColumns(['cover_url', 'action'])

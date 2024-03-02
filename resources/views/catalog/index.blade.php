@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
 @endsection
 @section('content')
-<div class="container py-3">
+<div class="container">
     <div class="row">
         <table class="table" id="dataTable">
             <thead>
@@ -44,7 +44,8 @@
                     data: 'cover_url',
                     name: 'image',
                     width: '20%',
-                    orderable: true,
+                    orderable: false,
+                    searchable: false,
                     render: function( data, type, full, meta ) {
                         return "<img src=\"/path/" + data + "\" height=\"50\"/>";
                     }
