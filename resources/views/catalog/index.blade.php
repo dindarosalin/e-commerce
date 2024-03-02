@@ -1,34 +1,92 @@
 @extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card">
-                    <div class="card-header">{{ __('Product Catalog') }}</div>
-                    <div class="card-body">
-                        <div class="row">
-                            @forelse ($products as $product)
-                                <div class="col-md-4 mb-4">
-                                    <div class="card">
-                                        <img src="{{ $product->cover_url }}" class="card-img-top" alt="{{ $product->name }}">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $product->name }}</h5>
-                                            <p class="card-text">{{ $product->description }}</p>
-                                            <p class="card-text"><strong>Price: ${{ $product->price }}</strong></p>
-                                            <a href="{{ route('add-to-cart', $product->id) }}" class="btn btn-primary">Masukkan keranjang</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            @empty
-                                <div class="col-md-12">
-                                    <p>No products available</p>
-                                </div>
-                            @endforelse
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@section('styles')
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
 @endsection
+@section('content')
+<div class="container py-3">
+    <div class="row">
+        <table class="table" id="dataTable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">description</th>
+                    <th scope="col">price</th>
+                    <th scope="col" class="text-end">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '{!! url()->current() !!}',
+            },
+            columns: [
+                { 
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'cover_url',
+                    name: 'image',
+                    width: '20%',
+                    orderable: true,
+                    render: function( data, type, full, meta ) {
+                        return "<img src=\"/path/" + data + "\" height=\"50\"/>";
+                    }
+                },
+                {
+                    data: 'name',
+                    name: 'name',
+                    width: '20%',
+                    orderable: true,
+                    serchable: true
+                },
+                {
+                    data: 'description',
+                    name: 'description',
+                    width: '20%',
+                    orderable: true,
+                    serchable: true
+                },
+                {
+                    data: 'price',
+                    name: 'price',
+                    width: '20%',
+                    orderable: true,
+                    serchable: true
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    width: '10%',
+                    orderable: false,
+                    serchable: false
+                }
+            ],
+            columnDefs: [
+                {
+                    "targets": [ 0 ],
+                    "visible": false,
+                    "searchable": false
+                }                     
+            ],
+            order: [[ 0, "desc" ]]
+        });
+    });
+</script>
+@endpush

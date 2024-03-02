@@ -35,7 +35,6 @@
                                 <td>{{ $item->price }}</td>
                                 <td>
                                     <a href="{{ route('products.edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             @empty

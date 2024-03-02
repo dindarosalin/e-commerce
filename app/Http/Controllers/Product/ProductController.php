@@ -143,19 +143,4 @@ class ProductController extends Controller
             return back()->with('status', $th->getMessage());
         }
     }
-
-    public function destroy($id)
-    {
-        try {
-            $product = Product::findOrFail($id);
-            
-            $product->clearMediaCollection('products');
-            
-            $product->delete();
-
-            return Redirect::route('products.index')->with('status', 'Product deleted successfully!');
-        } catch (\Throwable $th) {
-            return back()->with('status', $th->getMessage());
-        }
-    }
 }
